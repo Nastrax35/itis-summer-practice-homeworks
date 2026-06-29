@@ -10,7 +10,7 @@ fun main(){
 }
 fun analizeIntList(input: List<Int>) : String{
     if(input.size == 0){
-        return "Массив пустой"
+        return "List is empty"
     }
 
     var maximum = input[0]
