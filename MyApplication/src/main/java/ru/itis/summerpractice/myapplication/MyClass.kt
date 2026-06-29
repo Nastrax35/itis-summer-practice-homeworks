@@ -9,6 +9,10 @@ fun main(){
     println(passwordAnalize("TestPassword13134!441"))
 }
 fun analizeIntList(input: List<Int>) : String{
+    if(input.size == 0){
+        return "Массив пустой"
+    }
+
     var maximum = input[0]
     var minimum = input[0]
     var sum = 0
