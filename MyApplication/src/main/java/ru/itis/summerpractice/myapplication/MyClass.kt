@@ -9,8 +9,8 @@ fun main(){
     println(passwordAnalize("TestPassword13134!441"))
 }
 fun analizeIntList(input: List<Int>) : String{
-    var maximum = -100000
-    var minimum = 100000
+    var maximum = input[0]
+    var minimum = input[0]
     var sum = 0
     var chet = 0
     var nechet = 0
