@@ -31,7 +31,7 @@ import kotlin.random.Random
 @Composable
 fun ShowScreen() {
     var userInput by remember { mutableStateOf("") }
-    val secretByNumber = remember { Random.nextInt(0, 101) }
+    val secretByNumber = remember { Random.nextInt(1, 101) }
 
     // Переменная состояния для проверки по кнопке
     var checkedNumber by remember { mutableStateOf<Int?>(null) }
