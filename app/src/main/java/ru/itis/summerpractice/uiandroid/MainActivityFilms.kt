@@ -18,17 +18,13 @@ class MainActivityFilms : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            // Состояние, которое хранит текущий экран
             var currentScreen by remember { mutableStateOf(Screen.FIRST) }
 
-            // Простая навигация: в зависимости от state показываем нужный экран
             when (currentScreen) {
                 Screen.FIRST -> {
-                    // Передаем лямбду, которая переключит экран на SECOND
                     FirstScreen(onNavigateToSecond = { currentScreen = Screen.SECOND })
                 }
                 Screen.SECOND -> {
-                    // Передаем лямбду для возврата назад на FIRST
                     SecondScreen(onNavigateToFirst = { currentScreen = Screen.FIRST })
                 }
             }

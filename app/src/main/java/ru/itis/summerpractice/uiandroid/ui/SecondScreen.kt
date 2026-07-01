@@ -20,10 +20,8 @@ import coil3.compose.AsyncImage // Обрати внимание на импор
 
 @Composable
 fun SecondScreen(onNavigateToFirst: () -> Unit) {
-    // Храним текст, который вводит пользователь в поле фильтра
     var filterInput by remember { mutableStateOf("") }
 
-    // Состояние списка, который сейчас отображается на экране (по умолчанию — весь список)
     var displayedFilms by remember { mutableStateOf(DataRepository.filmsList) }
 
     Column(
@@ -31,14 +29,12 @@ fun SecondScreen(onNavigateToFirst: () -> Unit) {
             .fillMaxSize()
             .padding(16.dp)
     ) {
-        // Кнопка Назад, чтобы можно было вернуться на первый экран
         Button(onClick = onNavigateToFirst) {
             Text("Назад")
         }
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Поле ввода для фильтрации по году
         OutlinedTextField(
             value = filterInput,
             onValueChange = { filterInput = it },
@@ -49,16 +45,13 @@ fun SecondScreen(onNavigateToFirst: () -> Unit) {
 
         Spacer(modifier = Modifier.height(8.dp))
 
-        // Кнопка "Сортировать" (по ТЗ она выполняет роль применения фильтра)
         Button(
             onClick = {
                 val yearLimit = filterInput.toIntOrNull()
 
                 if (filterInput.isBlank() || yearLimit == null) {
-                    // Если поле пустое или ввели не число — возвращаем первоначальный список
                     displayedFilms = DataRepository.filmsList
                 } else {
-                    // Фильтруем: оставляем фильмы, у которых год выпуска <= введенного
                     displayedFilms = DataRepository.filmsList.filter { it.releaseDate <= yearLimit }
                 }
             },
@@ -69,7 +62,6 @@ fun SecondScreen(onNavigateToFirst: () -> Unit) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Отображение списка или заглушки, если ничего не найдено
         if (displayedFilms.isEmpty()) {
             Box(
                 modifier = Modifier.fillMaxSize(),
@@ -90,7 +82,6 @@ fun SecondScreen(onNavigateToFirst: () -> Unit) {
     }
 }
 
-// Отдельный Composable для одного элемента списка (картинка + текст справа)
 @Composable
 fun FilmRow(film: FilmModel) {
     Row(
@@ -99,17 +90,15 @@ fun FilmRow(film: FilmModel) {
             .padding(vertical = 4.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        // Картинка с использованием Coil AsyncImage
         AsyncImage(
             model = film.posterUrl,
             contentDescription = "Постер фильма",
             modifier = Modifier
-                .size(80.dp) // Фиксированный размер для картинки обязательно по ТЗ
+                .size(80.dp)
                 .padding(end = 16.dp),
             contentScale = ContentScale.Crop
         )
 
-        // Название и год выпуска справа от картинки
         Column {
             Text(text = film.name, fontSize = 18.sp)
             Text(text = "Год: ${film.releaseDate}", fontSize = 14.sp)

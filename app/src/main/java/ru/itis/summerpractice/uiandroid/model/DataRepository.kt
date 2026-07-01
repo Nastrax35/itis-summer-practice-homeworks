@@ -12,7 +12,6 @@ object DataRepository {
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEy-y51aHUfFtHwPcxCJN4eMpnv15px54ywD1Fl40tcrraD2nzoA3tRcc&s=10"
     )
 
-    // Функция генерации списка нужного размера
     fun generateFilms(count: Int) {
         filmsList = List(count) { index ->
             FilmModel(
@@ -20,7 +19,7 @@ object DataRepository {
                 posterUrl = posters.random(),
                 name = "${names.random()} ${index + 1}",
                 description = "Описание фильма $index",
-                releaseDate = (2000..2026).random() // Случайный год
+                releaseDate = (2000..2026).random()
             )
         }
     }
